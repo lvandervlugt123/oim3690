@@ -215,6 +215,41 @@
             color: #2c3e50;
         }
 
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 15px;
+            background: none;
+            border: none;
+            z-index: 101;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #667eea;
+            margin: 5px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-7px, -7px);
+        }
+
+        nav.mobile-open {
+            display: block !important;
+        }
+
         @media (max-width: 1024px) {
             header h1 {
                 font-size: 3em;
@@ -268,18 +303,46 @@
                 margin-bottom: 40px;
             }
 
+            .hamburger {
+                display: flex;
+            }
+
             nav {
-                padding: 0;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                display: none;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                z-index: 100;
+                padding-top: 80px;
+                max-height: calc(100vh - 80px);
+                overflow-y: auto;
             }
 
             nav ul {
-                flex-wrap: wrap;
-                gap: 0;
+                flex-direction: column;
+                padding: 0;
+                margin: 0;
+            }
+
+            nav li {
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            nav li:last-child {
+                border-bottom: none;
             }
 
             nav a {
-                padding: 14px 12px;
-                font-size: 0.85em;
+                padding: 16px 20px;
+                font-size: 0.95em;
+            }
+
+            nav a::after {
+                display: none;
             }
 
             ul, ol {
@@ -390,6 +453,12 @@
             <li><a href="#food">Food</a></li>
         </ul>
     </nav>
+
+    <button class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
 
     <div class="container">
         <section id="history" class="section">
@@ -502,6 +571,32 @@
     <footer>
         <p>&copy; 2024 Learn About Dutch Culture. Celebrating the rich heritage of the Netherlands.</p>
     </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const nav = document.querySelector('nav');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            nav.classList.toggle('mobile-open');
+        });
+
+        // Close menu when a nav link is clicked
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                nav.classList.remove('mobile-open');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!nav.contains(event.target) && !hamburger.contains(event.target)) {
+                hamburger.classList.remove('active');
+                nav.classList.remove('mobile-open');
+            }
+        });
+    </script>
 </body>
 </html>
 
