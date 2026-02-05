@@ -435,6 +435,92 @@
                 font-size: 0.85em;
             }
         }
+
+        /* Flappy Clog Game Styles */
+        #gameContainer {
+            position: relative;
+            border: 3px solid #667eea;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            margin: 20px auto;
+            max-width: 400px;
+        }
+
+        #gameCanvas {
+            display: block;
+            background: linear-gradient(to bottom, #87CEEB 0%, #98FB98 100%);
+        }
+
+        #gameScore {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        #gameInstructions {
+            margin-top: 20px;
+            text-align: center;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #gameStartButton {
+            padding: 10px 20px;
+            font-size: 18px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        #gameStartButton:hover {
+            transform: scale(1.05);
+        }
+
+        #gameOver {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            color: #2c3e50;
+        }
+
+        #gameFinalScore {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        #gameRestartButton {
+            padding: 10px 20px;
+            font-size: 18px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        #gameRestartButton:hover {
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
@@ -451,7 +537,7 @@
             <li><a href="#traditions">Traditions</a></li>
             <li><a href="#architecture">Architecture</a></li>
             <li><a href="#food">Food</a></li>
-            <li><a href="flappy-clog.html">Flappy Clog</a></li>
+            <li><a href="#games">Games</a></li>
         </ul>
     </nav>
 
@@ -569,6 +655,26 @@
         </section>
     </div>
 
+    <section id="games" class="section">
+        <h2>🇳🇱 Flappy Clog Game 🇳🇱</h2>
+        <p>Experience Dutch culture in a fun way! Help the traditional Dutch clog navigate through iconic Dutch architecture.</p>
+
+        <div id="gameContainer">
+            <div id="gameScore">Score: 0</div>
+            <canvas id="gameCanvas" width="400" height="600"></canvas>
+            <div id="gameOver">
+                <div id="gameFinalScore">0</div>
+                <p>Game Over!</p>
+                <button id="gameRestartButton">Play Again</button>
+            </div>
+        </div>
+        <div id="gameInstructions">
+            <p>Help the Dutch clog fly through the traditional Dutch homes!</p>
+            <p>Click or press SPACE to make the clog jump. Avoid the houses!</p>
+            <button id="gameStartButton">Start Game</button>
+        </div>
+    </section>
+
     <footer>
         <p>&copy; 2024 Learn About Dutch Culture. Celebrating the rich heritage of the Netherlands.</p>
     </footer>
@@ -597,6 +703,230 @@
                 nav.classList.remove('mobile-open');
             }
         });
+
+        // Flappy Clog Game JavaScript
+        const gameCanvas = document.getElementById('gameCanvas');
+        const gameCtx = gameCanvas.getContext('2d');
+        const gameScoreElement = document.getElementById('gameScore');
+        const gameOverElement = document.getElementById('gameOver');
+        const gameFinalScoreElement = document.getElementById('gameFinalScore');
+        const gameStartButton = document.getElementById('gameStartButton');
+        const gameRestartButton = document.getElementById('gameRestartButton');
+        const gameInstructions = document.getElementById('gameInstructions');
+
+        // Game variables
+        let gameRunning = false;
+        let gameOver = false;
+        let score = 0;
+        let gravity = 0.6;
+        let jumpStrength = -12;
+        let pipeSpeed = 3;
+        let pipeGap = 200;
+        let pipeWidth = 80;
+
+        // Clog (player)
+        let clog = {
+            x: 50,
+            y: gameCanvas.height / 2,
+            width: 30,
+            height: 30,
+            velocity: 0
+        };
+
+        // Pipes (Dutch homes)
+        let pipes = [];
+
+        function drawClog() {
+            gameCtx.fillStyle = '#8B4513'; // Brown for wooden clog
+            gameCtx.fillRect(clog.x, clog.y, clog.width, clog.height);
+
+            // Add some detail to make it look like a clog
+            gameCtx.fillStyle = '#654321';
+            gameCtx.fillRect(clog.x + 5, clog.y + 5, clog.width - 10, clog.height - 10);
+
+            // Add strap
+            gameCtx.fillStyle = '#000';
+            gameCtx.fillRect(clog.x - 5, clog.y + 10, 40, 5);
+        }
+
+        function drawPipe(pipe) {
+            // Draw Dutch house (simplified)
+            gameCtx.fillStyle = '#D2691E'; // Saddle brown for house body
+
+            // House body
+            gameCtx.fillRect(pipe.x, 0, pipeWidth, pipe.topHeight);
+            gameCtx.fillRect(pipe.x, gameCanvas.height - pipe.bottomHeight, pipeWidth, pipe.bottomHeight);
+
+            // Roof
+            gameCtx.fillStyle = '#8B0000'; // Dark red roof
+            gameCtx.beginPath();
+            gameCtx.moveTo(pipe.x, pipe.topHeight);
+            gameCtx.lineTo(pipe.x + pipeWidth/2, pipe.topHeight - 20);
+            gameCtx.lineTo(pipe.x + pipeWidth, pipe.topHeight);
+            gameCtx.closePath();
+            gameCtx.fill();
+
+            gameCtx.beginPath();
+            gameCtx.moveTo(pipe.x, gameCanvas.height - pipe.bottomHeight);
+            gameCtx.lineTo(pipe.x + pipeWidth/2, gameCanvas.height - pipe.bottomHeight + 20);
+            gameCtx.lineTo(pipe.x + pipeWidth, gameCanvas.height - pipe.bottomHeight);
+            gameCtx.closePath();
+            gameCtx.fill();
+
+            // Windows
+            gameCtx.fillStyle = '#87CEEB'; // Light blue windows
+            // Top house windows
+            gameCtx.fillRect(pipe.x + 10, pipe.topHeight - 40, 15, 15);
+            gameCtx.fillRect(pipe.x + pipeWidth - 25, pipe.topHeight - 40, 15, 15);
+            // Bottom house windows
+            gameCtx.fillRect(pipe.x + 10, gameCanvas.height - pipe.bottomHeight + 10, 15, 15);
+            gameCtx.fillRect(pipe.x + pipeWidth - 25, gameCanvas.height - pipe.bottomHeight + 10, 15, 15);
+
+            // Door
+            gameCtx.fillStyle = '#654321'; // Brown door
+            gameCtx.fillRect(pipe.x + pipeWidth/2 - 8, gameCanvas.height - pipe.bottomHeight + 30, 16, 25);
+        }
+
+        function createPipe() {
+            const topHeight = Math.random() * (gameCanvas.height - pipeGap - 100) + 50;
+            const bottomHeight = gameCanvas.height - topHeight - pipeGap;
+
+            pipes.push({
+                x: gameCanvas.width,
+                topHeight: topHeight,
+                bottomHeight: bottomHeight,
+                passed: false
+            });
+        }
+
+        function update() {
+            if (!gameRunning || gameOver) return;
+
+            // Update clog
+            clog.velocity += gravity;
+            clog.y += clog.velocity;
+
+            // Check ground and ceiling collision
+            if (clog.y + clog.height >= gameCanvas.height || clog.y <= 0) {
+                endGame();
+                return;
+            }
+
+            // Update pipes
+            for (let i = pipes.length - 1; i >= 0; i--) {
+                const pipe = pipes[i];
+                pipe.x -= pipeSpeed;
+
+                // Check collision with pipes
+                if (clog.x < pipe.x + pipeWidth &&
+                    clog.x + clog.width > pipe.x &&
+                    (clog.y < pipe.topHeight || clog.y + clog.height > gameCanvas.height - pipe.bottomHeight)) {
+                    endGame();
+                    return;
+                }
+
+                // Check if pipe passed
+                if (!pipe.passed && pipe.x + pipeWidth < clog.x) {
+                    pipe.passed = true;
+                    score++;
+                    gameScoreElement.textContent = `Score: ${score}`;
+                }
+
+                // Remove off-screen pipes
+                if (pipe.x + pipeWidth < 0) {
+                    pipes.splice(i, 1);
+                }
+            }
+
+            // Add new pipes
+            if (pipes.length === 0 || pipes[pipes.length - 1].x < gameCanvas.width - 200) {
+                createPipe();
+            }
+        }
+
+        function draw() {
+            // Clear canvas
+            gameCtx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
+
+            // Draw background
+            const gradient = gameCtx.createLinearGradient(0, 0, 0, gameCanvas.height);
+            gradient.addColorStop(0, '#87CEEB'); // Sky blue
+            gradient.addColorStop(1, '#98FB98'); // Pale green
+            gameCtx.fillStyle = gradient;
+            gameCtx.fillRect(0, 0, gameCanvas.width, gameCanvas.height);
+
+            // Draw ground
+            gameCtx.fillStyle = '#228B22'; // Forest green ground
+            gameCtx.fillRect(0, gameCanvas.height - 20, gameCanvas.width, 20);
+
+            // Draw pipes (houses)
+            pipes.forEach(drawPipe);
+
+            // Draw clog
+            drawClog();
+        }
+
+        function gameLoop() {
+            update();
+            draw();
+            requestAnimationFrame(gameLoop);
+        }
+
+        function jump() {
+            if (!gameRunning) return;
+            clog.velocity = jumpStrength;
+        }
+
+        function startGame() {
+            gameRunning = true;
+            gameOver = false;
+            score = 0;
+            gameScoreElement.textContent = 'Score: 0';
+            clog.y = gameCanvas.height / 2;
+            clog.velocity = 0;
+            pipes = [];
+            gameOverElement.style.display = 'none';
+            gameInstructions.style.display = 'block';
+            createPipe();
+        }
+
+        function endGame() {
+            gameRunning = false;
+            gameOver = true;
+            gameFinalScoreElement.textContent = score;
+            gameOverElement.style.display = 'block';
+            gameInstructions.style.display = 'none';
+        }
+
+        function restartGame() {
+            startGame();
+        }
+
+        // Event listeners
+        gameStartButton.addEventListener('click', startGame);
+        gameRestartButton.addEventListener('click', restartGame);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') {
+                e.preventDefault();
+                if (!gameRunning && !gameOver) {
+                    startGame();
+                } else if (gameRunning) {
+                    jump();
+                }
+            }
+        });
+
+        gameCanvas.addEventListener('click', () => {
+            if (!gameRunning && !gameOver) {
+                startGame();
+            } else if (gameRunning) {
+                jump();
+            }
+        });
+
+        // Start the game loop
+        gameLoop();
     </script>
 </body>
 </html>
