@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+:root {
+	--accent: #FFB4A2;        /* pastel coral */
+	--accent-dark: #FF8A65;   /* slightly deeper */
+	--primary: #C7CEEA;       /* pastel lavender */
+	--secondary: #BDE7D8;     /* pastel mint */
+	--muted: #7D8A93;         /* soft gray */
+	--bg: #FBF8FF;            /* very pale lavender */
+	--text: #334155;          /* deep slate */
+	--surface: #FFFFFF;       /* card surface */
+}
+
+/* Base typography and colors */
+body {
+	font-family: 'Inter', Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+	color: var(--text);
+	background: var(--bg);
+	line-height: 1.7;
+	font-size: 16px;
+}
+
+/* Header tweaks */
+header {
+	background: linear-gradient(135deg, var(--primary) 0%, #DDE9FF 100%);
+	color: #fff;
+	padding: 44px 20px;
+}
+
+header h1 {
+	color: #ffffff;
+	font-weight: 700;
+	letter-spacing: -0.4px;
+	font-size: 2.4rem;
+}
+
+header p {
+	color: rgba(255,255,255,0.95);
+	font-weight: 300;
+}
+
+/* Navigation */
+nav a {
+	color: var(--text);
+	transition: color 0.18s ease, transform 0.18s ease;
+}
+
+nav a:hover {
+	color: var(--accent-dark);
+	transform: translateY(-1px);
+}
+
+/* Links */
+a {
+	color: var(--accent);
+}
+
+/* Buttons */
+button, #gameStartButton, #gameRestartButton {
+	font-family: inherit;
+	background: linear-gradient(90deg,var(--accent),var(--primary));
+	color: #fff;
+	border: none;
+	padding: 8px 14px;
+	border-radius: 12px;
+	cursor: pointer;
+	box-shadow: 0 8px 20px rgba(167,142,226,0.12);
+}
+
+button:hover, #gameStartButton:hover, #gameRestartButton:hover {
+	opacity: 0.98;
+	transform: translateY(-1px);
+}
+
+/* Sections */
+.section {
+	background: var(--surface);
+	border-radius: 12px;
+	padding: 28px;
+	box-shadow: 0 6px 18px rgba(30,41,59,0.04);
+}
+
+/* Utility */
+.muted {
+	color: var(--muted);
+}
