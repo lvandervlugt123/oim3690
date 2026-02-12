@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="css/about-me.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dutch Culture & History of the Netherlands</title>
-    <link rel="stylesheet" href="css/styles.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-
         * {
             margin: 0;
             padding: 0;
@@ -15,67 +13,34 @@
         }
 
         body {
-            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            line-height: 1.7;
-            color: #2c3e50;
-            background: #f8fafb;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
         }
 
         header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #FF6B35 0%, #004E89 100%);
             color: white;
-            padding: 80px 20px;
+            padding: 60px 20px;
             text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 500px;
-            height: 500px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-        }
-
-        header::after {
-            content: '';
-            position: absolute;
-            bottom: -30%;
-            left: -5%;
-            width: 300px;
-            height: 300px;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 50%;
         }
 
         header h1 {
-            font-size: 3.5em;
-            margin-bottom: 15px;
-            font-weight: 700;
-            position: relative;
-            z-index: 1;
-            letter-spacing: -0.5px;
+            font-size: 3em;
+            margin-bottom: 10px;
         }
 
         header p {
-            font-size: 1.2em;
-            opacity: 0.95;
-            position: relative;
-            z-index: 1;
-            font-weight: 300;
+            font-size: 1.3em;
+            opacity: 0.9;
         }
 
         nav {
-            background: white;
-            padding: 0;
+            background: #004E89;
+            padding: 15px 0;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
 
         nav ul {
@@ -83,447 +48,75 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            max-width: 1200px;
-            margin: 0 auto;
         }
 
         nav a {
-            color: #2c3e50;
+            color: white;
             text-decoration: none;
-            padding: 18px 25px;
+            padding: 10px 20px;
             display: block;
-            transition: all 0.3s ease;
-            font-weight: 500;
-            font-size: 0.95em;
-            position: relative;
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            transition: width 0.3s ease;
+            transition: background 0.3s;
         }
 
         nav a:hover {
-            color: #667eea;
-        }
-
-        nav a:hover::after {
-            width: 100%;
+            background: #FF6B35;
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 40px 20px;
         }
 
         h2 {
-            color: #2c3e50;
-            font-size: 2.5em;
-            margin: 50px 0 30px;
-            font-weight: 700;
-            position: relative;
-            padding-bottom: 15px;
-        }
-
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 2px;
+            color: #004E89;
+            font-size: 2em;
+            margin: 40px 0 20px;
+            border-bottom: 3px solid #FF6B35;
+            padding-bottom: 10px;
         }
 
         h3 {
-            color: #667eea;
-            font-size: 1.4em;
-            margin: 35px 0 18px;
-            font-weight: 600;
+            color: #FF6B35;
+            font-size: 1.5em;
+            margin: 30px 0 15px;
         }
 
         .section {
             margin-bottom: 50px;
-            background: white;
-            padding: 45px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .section:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 10px;
         }
 
         .highlight {
-            background: linear-gradient(120deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-weight: 500;
+            background: #FFE66D;
+            padding: 2px 6px;
+            border-radius: 3px;
         }
 
         ul, ol {
-            margin: 25px 0 25px 30px;
+            margin: 20px 0 20px 30px;
         }
 
         li {
-            margin: 12px 0;
-            line-height: 1.8;
+            margin: 10px 0;
         }
 
         footer {
-            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            background: #004E89;
             color: white;
             text-align: center;
-            padding: 40px 20px;
-            margin-top: 80px;
-            font-weight: 300;
+            padding: 20px;
+            margin-top: 60px;
         }
 
         .flag {
-            font-size: 2.5em;
-            margin: 25px 0;
-            animation: float 3s ease-in-out infinite;
+            font-size: 2em;
+            margin: 20px 0;
         }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        p {
-            margin-bottom: 20px;
-            line-height: 1.8;
-            font-weight: 400;
-        }
-
-        strong {
-            font-weight: 600;
-            color: #2c3e50;
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            padding: 15px;
-            background: none;
-            border: none;
-            z-index: 101;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: #667eea;
-            margin: 5px 0;
-            transition: 0.3s;
-            border-radius: 2px;
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(-45deg) translate(-8px, 8px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(45deg) translate(-7px, -7px);
-        }
-
-        nav.mobile-open {
-            display: block !important;
-        }
-
-        @media (max-width: 1024px) {
-            header h1 {
-                font-size: 3em;
-            }
-
-            h2 {
-                font-size: 2.2em;
-            }
-
-            .container {
-                max-width: 90%;
-            }
-        }
-
-        @media (max-width: 768px) {
-            header {
-                padding: 60px 20px;
-            }
-
-            header h1 {
-                font-size: 2.3em;
-                margin-bottom: 10px;
-            }
-
-            header p {
-                font-size: 1.05em;
-            }
-
-            .flag {
-                font-size: 2em;
-                margin: 15px 0;
-            }
-
-            h2 {
-                font-size: 1.8em;
-                margin: 40px 0 25px;
-            }
-
-            h3 {
-                font-size: 1.2em;
-                margin: 25px 0 15px;
-            }
-
-            .container {
-                padding: 40px 15px;
-                max-width: 100%;
-            }
-
-            .section {
-                padding: 25px 20px;
-                margin-bottom: 40px;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            nav {
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                background: white;
-                flex-direction: column;
-                display: none;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-                z-index: 100;
-                padding-top: 80px;
-                max-height: calc(100vh - 80px);
-                overflow-y: auto;
-            }
-
-            nav ul {
-                flex-direction: column;
-                padding: 0;
-                margin: 0;
-            }
-
-            nav li {
-                border-bottom: 1px solid #f0f0f0;
-            }
-
-            nav li:last-child {
-                border-bottom: none;
-            }
-
-            nav a {
-                padding: 16px 20px;
-                font-size: 0.95em;
-            }
-
-            nav a::after {
-                display: none;
-            }
-
-            ul, ol {
-                margin: 20px 0 20px 25px;
-            }
-
-            li {
-                margin: 10px 0;
-                font-size: 0.95em;
-            }
-
-            p {
-                font-size: 0.95em;
-            }
-
-            footer {
-                padding: 30px 15px;
-                margin-top: 60px;
-                font-size: 0.9em;
-            }
-        }
-
-        @media (max-width: 480px) {
-            header {
-                padding: 50px 15px;
-            }
-
-            header h1 {
-                font-size: 1.8em;
-                margin-bottom: 8px;
-            }
-
-            header p {
-                font-size: 0.95em;
-            }
-
-            .flag {
-                font-size: 1.5em;
-                margin: 12px 0;
-            }
-
-            h2 {
-                font-size: 1.5em;
-                margin: 30px 0 20px;
-            }
-
-            h3 {
-                font-size: 1.1em;
-            }
-
-            .container {
-                padding: 30px 12px;
-            }
-
-            .section {
-                padding: 20px 15px;
-                border-radius: 8px;
-            }
-
-            nav a {
-                padding: 12px 10px;
-                font-size: 0.8em;
-            }
-
-            nav a::after {
-                height: 2px;
-            }
-
-            ul, ol {
-                margin: 15px 0 15px 20px;
-            }
-
-            li {
-                margin: 8px 0;
-                font-size: 0.9em;
-            }
-
-            p {
-                font-size: 0.9em;
-                line-height: 1.6;
-            }
-
-            .highlight {
-                padding: 2px 6px;
-                font-size: 0.95em;
-            }
-
-            footer {
-                padding: 25px 12px;
-                font-size: 0.85em;
-            }
-        }
-
-        /* Flappy Clog Game Styles */
-        #gameContainer {
-            position: relative;
-            border: 3px solid #667eea;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            margin: 20px auto;
-            max-width: 400px;
-        }
-
-        #gameCanvas {
-            display: block;
-            background: linear-gradient(to bottom, #87CEEB 0%, #98FB98 100%);
-        }
-
-        #gameScore {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            font-size: 24px;
-            font-weight: bold;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        #gameInstructions {
-            margin-top: 20px;
-            text-align: center;
-            max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        #gameStartButton {
-            padding: 10px 20px;
-            font-size: 18px;
-            background: #667eea;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-            font-weight: 600;
-            transition: transform 0.2s;
-        }
-
-        #gameStartButton:hover {
-            transform: scale(1.05);
-        }
-
-        #gameOver {
-            display: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 10px;
-            color: #2c3e50;
-        }
-
-        #gameFinalScore {
-            font-size: 48px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        #gameRestartButton {
-            padding: 10px 20px;
-            font-size: 18px;
-            background: #667eea;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: transform 0.2s;
-        }
-
-        #gameRestartButton:hover {
-            transform: scale(1.05);
-        }
-     </style>
- </head>
+    </style>
+</head>
 <body>
     <header>
         <h1>🇳🇱 The Netherlands</h1>
@@ -533,20 +126,14 @@
 
     <nav>
         <ul>
+            <li><a href="about-me.html">About Lucian</a></li>
             <li><a href="#history">History</a></li>
             <li><a href="#culture">Culture</a></li>
             <li><a href="#traditions">Traditions</a></li>
             <li><a href="#architecture">Architecture</a></li>
             <li><a href="#food">Food</a></li>
-            <li><a href="#games">Games</a></li>
         </ul>
     </nav>
-
-    <button class="hamburger" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
 
     <div class="container">
         <section id="history" class="section">
@@ -656,279 +243,9 @@
         </section>
     </div>
 
-    <section id="games" class="section">
-        <h2>🇳🇱 Flappy Clog Game 🇳🇱</h2>
-        <p>Experience Dutch culture in a fun way! Help the traditional Dutch clog navigate through iconic Dutch architecture.</p>
-
-        <div id="gameContainer">
-            <div id="gameScore">Score: 0</div>
-            <canvas id="gameCanvas" width="400" height="600"></canvas>
-            <div id="gameOver">
-                <div id="gameFinalScore">0</div>
-                <p>Game Over!</p>
-                <button id="gameRestartButton">Play Again</button>
-            </div>
-        </div>
-        <div id="gameInstructions">
-            <p>Help the Dutch clog fly through the traditional Dutch homes!</p>
-            <p>Click or press SPACE to make the clog jump. Avoid the houses!</p>
-            <button id="gameStartButton">Start Game</button>
-        </div>
-    </section>
-
     <footer>
         <p>&copy; 2024 Learn About Dutch Culture. Celebrating the rich heritage of the Netherlands.</p>
     </footer>
-
-    <script>
-        const hamburger = document.getElementById('hamburger');
-        const nav = document.querySelector('nav');
-
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            nav.classList.toggle('mobile-open');
-        });
-
-        // Close menu when a nav link is clicked
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                nav.classList.remove('mobile-open');
-            });
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', (event) => {
-            if (!nav.contains(event.target) && !hamburger.contains(event.target)) {
-                hamburger.classList.remove('active');
-                nav.classList.remove('mobile-open');
-            }
-        });
-
-        // Flappy Clog Game JavaScript
-        const gameCanvas = document.getElementById('gameCanvas');
-        const gameCtx = gameCanvas.getContext('2d');
-        const gameScoreElement = document.getElementById('gameScore');
-        const gameOverElement = document.getElementById('gameOver');
-        const gameFinalScoreElement = document.getElementById('gameFinalScore');
-        const gameStartButton = document.getElementById('gameStartButton');
-        const gameRestartButton = document.getElementById('gameRestartButton');
-        const gameInstructions = document.getElementById('gameInstructions');
-
-        // Game variables
-        let gameRunning = false;
-        let gameOver = false;
-        let score = 0;
-        let gravity = 0.6;
-        let jumpStrength = -12;
-        let pipeSpeed = 3;
-        let pipeGap = 200;
-        let pipeWidth = 80;
-
-        // Clog (player)
-        let clog = {
-            x: 50,
-            y: gameCanvas.height / 2,
-            width: 30,
-            height: 30,
-            velocity: 0
-        };
-
-        // Pipes (Dutch homes)
-        let pipes = [];
-
-        function drawClog() {
-            gameCtx.fillStyle = '#8B4513'; // Brown for wooden clog
-            gameCtx.fillRect(clog.x, clog.y, clog.width, clog.height);
-
-            // Add some detail to make it look like a clog
-            gameCtx.fillStyle = '#654321';
-            gameCtx.fillRect(clog.x + 5, clog.y + 5, clog.width - 10, clog.height - 10);
-
-            // Add strap
-            gameCtx.fillStyle = '#000';
-            gameCtx.fillRect(clog.x - 5, clog.y + 10, 40, 5);
-        }
-
-        function drawPipe(pipe) {
-            // Draw Dutch house (simplified)
-            gameCtx.fillStyle = '#D2691E'; // Saddle brown for house body
-
-            // House body
-            gameCtx.fillRect(pipe.x, 0, pipeWidth, pipe.topHeight);
-            gameCtx.fillRect(pipe.x, gameCanvas.height - pipe.bottomHeight, pipeWidth, pipe.bottomHeight);
-
-            // Roof
-            gameCtx.fillStyle = '#8B0000'; // Dark red roof
-            gameCtx.beginPath();
-            gameCtx.moveTo(pipe.x, pipe.topHeight);
-            gameCtx.lineTo(pipe.x + pipeWidth/2, pipe.topHeight - 20);
-            gameCtx.lineTo(pipe.x + pipeWidth, pipe.topHeight);
-            gameCtx.closePath();
-            gameCtx.fill();
-
-            gameCtx.beginPath();
-            gameCtx.moveTo(pipe.x, gameCanvas.height - pipe.bottomHeight);
-            gameCtx.lineTo(pipe.x + pipeWidth/2, gameCanvas.height - pipe.bottomHeight + 20);
-            gameCtx.lineTo(pipe.x + pipeWidth, gameCanvas.height - pipe.bottomHeight);
-            gameCtx.closePath();
-            gameCtx.fill();
-
-            // Windows
-            gameCtx.fillStyle = '#87CEEB'; // Light blue windows
-            // Top house windows
-            gameCtx.fillRect(pipe.x + 10, pipe.topHeight - 40, 15, 15);
-            gameCtx.fillRect(pipe.x + pipeWidth - 25, pipe.topHeight - 40, 15, 15);
-            // Bottom house windows
-            gameCtx.fillRect(pipe.x + 10, gameCanvas.height - pipe.bottomHeight + 10, 15, 15);
-            gameCtx.fillRect(pipe.x + pipeWidth - 25, gameCanvas.height - pipe.bottomHeight + 10, 15, 15);
-
-            // Door
-            gameCtx.fillStyle = '#654321'; // Brown door
-            gameCtx.fillRect(pipe.x + pipeWidth/2 - 8, gameCanvas.height - pipe.bottomHeight + 30, 16, 25);
-        }
-
-        function createPipe() {
-            const topHeight = Math.random() * (gameCanvas.height - pipeGap - 100) + 50;
-            const bottomHeight = gameCanvas.height - topHeight - pipeGap;
-
-            pipes.push({
-                x: gameCanvas.width,
-                topHeight: topHeight,
-                bottomHeight: bottomHeight,
-                passed: false
-            });
-        }
-
-        function update() {
-            if (!gameRunning || gameOver) return;
-
-            // Update clog
-            clog.velocity += gravity;
-            clog.y += clog.velocity;
-
-            // Check ground and ceiling collision
-            if (clog.y + clog.height >= gameCanvas.height || clog.y <= 0) {
-                endGame();
-                return;
-            }
-
-            // Update pipes
-            for (let i = pipes.length - 1; i >= 0; i--) {
-                const pipe = pipes[i];
-                pipe.x -= pipeSpeed;
-
-                // Check collision with pipes
-                if (clog.x < pipe.x + pipeWidth &&
-                    clog.x + clog.width > pipe.x &&
-                    (clog.y < pipe.topHeight || clog.y + clog.height > gameCanvas.height - pipe.bottomHeight)) {
-                    endGame();
-                    return;
-                }
-
-                // Check if pipe passed
-                if (!pipe.passed && pipe.x + pipeWidth < clog.x) {
-                    pipe.passed = true;
-                    score++;
-                    gameScoreElement.textContent = `Score: ${score}`;
-                }
-
-                // Remove off-screen pipes
-                if (pipe.x + pipeWidth < 0) {
-                    pipes.splice(i, 1);
-                }
-            }
-
-            // Add new pipes
-            if (pipes.length === 0 || pipes[pipes.length - 1].x < gameCanvas.width - 200) {
-                createPipe();
-            }
-        }
-
-        function draw() {
-            // Clear canvas
-            gameCtx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
-
-            // Draw background
-            const gradient = gameCtx.createLinearGradient(0, 0, 0, gameCanvas.height);
-            gradient.addColorStop(0, '#87CEEB'); // Sky blue
-            gradient.addColorStop(1, '#98FB98'); // Pale green
-            gameCtx.fillStyle = gradient;
-            gameCtx.fillRect(0, 0, gameCanvas.width, gameCanvas.height);
-
-            // Draw ground
-            gameCtx.fillStyle = '#228B22'; // Forest green ground
-            gameCtx.fillRect(0, gameCanvas.height - 20, gameCanvas.width, 20);
-
-            // Draw pipes (houses)
-            pipes.forEach(drawPipe);
-
-            // Draw clog
-            drawClog();
-        }
-
-        function gameLoop() {
-            update();
-            draw();
-            requestAnimationFrame(gameLoop);
-        }
-
-        function jump() {
-            if (!gameRunning) return;
-            clog.velocity = jumpStrength;
-        }
-
-        function startGame() {
-            gameRunning = true;
-            gameOver = false;
-            score = 0;
-            gameScoreElement.textContent = 'Score: 0';
-            clog.y = gameCanvas.height / 2;
-            clog.velocity = 0;
-            pipes = [];
-            gameOverElement.style.display = 'none';
-            gameInstructions.style.display = 'block';
-            createPipe();
-        }
-
-        function endGame() {
-            gameRunning = false;
-            gameOver = true;
-            gameFinalScoreElement.textContent = score;
-            gameOverElement.style.display = 'block';
-            gameInstructions.style.display = 'none';
-        }
-
-        function restartGame() {
-            startGame();
-        }
-
-        // Event listeners
-        gameStartButton.addEventListener('click', startGame);
-        gameRestartButton.addEventListener('click', restartGame);
-
-        document.addEventListener('keydown', (e) => {
-            if (e.code === 'Space') {
-                e.preventDefault();
-                if (!gameRunning && !gameOver) {
-                    startGame();
-                } else if (gameRunning) {
-                    jump();
-                }
-            }
-        });
-
-        gameCanvas.addEventListener('click', () => {
-            if (!gameRunning && !gameOver) {
-                startGame();
-            } else if (gameRunning) {
-                jump();
-            }
-        });
-
-        // Start the game loop
-        gameLoop();
-    </script>
 </body>
 </html>
 
