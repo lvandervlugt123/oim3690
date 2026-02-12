@@ -2,51 +2,125 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>About — Lucian van der Vlugt</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Lucian van der Vlugt — About</title>
 	<link rel="stylesheet" href="css/styles.css">
 	<link rel="stylesheet" href="css/about-me.css">
 </head>
-<body class="demo">
-	<header>
-		<h1>Lucian van der Vlugt</h1>
-		<p class="muted">Dutch & Cuban — 22 years old</p>
+<body class="demo" data-theme="light">
+	<header class="site-header">
+		<div class="wrap">
+			<a class="brand" href="/">Lucian</a>
+			<nav class="top-nav" aria-label="Main navigation">
+				<a href="/about-me.html" aria-current="page">About</a>
+				<a href="index.html">Home</a>
+			</nav>
+			<div class="actions">
+				<button id="themeToggle" aria-label="Toggle theme">🌙</button>
+			</div>
+		</div>
 	</header>
 
 	<main class="container">
-		<section class="section">
-			<h2>About me</h2>
-			<p>Hi — I'm Lucian. I'm 22 years old, born and raised with Dutch and Cuban roots. I love social sports, games, and contemporary art. This page highlights a few of my passions and interests.</p>
+		<section class="hero section">
+			<div class="hero-inner">
+				<div class="hero-text">
+					<h1>Lucian van der Vlugt</h1>
+					<p class="lead">Dutch & Cuban — 22 — art lover, padel player, and board-game strategist.</p>
+					<p class="muted">I’m fascinated by contemporary art, especially Cy Twombly and Richard Prince, and enjoy social play: padel, Catan, and card games.</p>
+					<div class="cta">
+						<a class="btn" href="mailto:hello@example.com">Contact</a>
+						<a class="btn ghost" href="#interests">My interests</a>
+					</div>
+				</div>
+
+				<div class="hero-media">
+					<div class="avatar" role="img" aria-label="Profile placeholder">LV</div>
+				</div>
+			</div>
 		</section>
 
-		<section class="section">
+		<section id="interests" class="section">
 			<h2>Interests</h2>
-			<ul>
-				<li><strong>Padel:</strong> I play regularly and enjoy the social, fast-paced nature of the game 🎾</li>
-				<li><strong>Board games:</strong> Big fan of strategy and negotiation games — Catan is a favourite</li>
-				<li><strong>Card games:</strong> I enjoy classic and party card games with friends</li>
-				<li><strong>Modern & contemporary art:</strong> Huge fan of artists like Cy Twombly and Richard Prince</li>
-			</ul>
+			<div class="grid cards">
+				<article class="card">
+					<h3>Padel</h3>
+					<p>I play regularly — I love the fast rallies and social vibe of padel.</p>
+				</article>
+
+				<article class="card">
+					<h3>Board games</h3>
+					<p>Strategy and negotiation games are my go-to; Catan is a favourite around the table.</p>
+				</article>
+
+				<article class="card">
+					<h3>Card games</h3>
+					<p>From classics to party card games — good cards, good company.</p>
+				</article>
+
+				<article class="card">
+					<h3>Contemporary art</h3>
+					<p>Obsessed with modern practice — Cy Twombly’s gestural marks and Richard Prince’s recontextualisation.</p>
+				</article>
+			</div>
 		</section>
 
 		<section class="section">
 			<h2>Favourite artists</h2>
-			<p class="muted">A few artists and movements I follow:</p>
-			<ul>
-				<li>Cy Twombly — expressive, gestural marks and poetic titles</li>
-				<li>Richard Prince — appropriation, photography and recontextualisation</li>
-				<li>Contemporary painting and conceptual practice — always exploring new names</li>
-			</ul>
+			<div class="grid artists">
+				<div class="artist-card">
+					<div class="artist-thumb">CT</div>
+					<div>
+						<strong>Cy Twombly</strong>
+						<p class="muted">Poetic, gestural, and lyric abstraction.</p>
+					</div>
+				</div>
+
+				<div class="artist-card">
+					<div class="artist-thumb">RP</div>
+					<div>
+						<strong>Richard Prince</strong>
+						<p class="muted">Appropriation and photographic recontextualisation.</p>
+					</div>
+				</div>
+
+				<div class="artist-card">
+					<div class="artist-thumb">—</div>
+					<div>
+						<strong>Contemporary practice</strong>
+						<p class="muted">Always discovering new names and ideas.</p>
+					</div>
+				</div>
+			</div>
 		</section>
 
 		<section class="section">
-			<h2>Contact & social</h2>
-			<p class="muted">Want to connect? Add links or contact info here.</p>
+			<h2>Connect</h2>
+			<p class="muted">Add your social links or an email address. For now, use the contact button above.</p>
 		</section>
 	</main>
 
-	<footer class="demo">
-		<p class="muted">🇳🇱🇨🇺 Lucian van der Vlugt • 22</p>
+	<footer class="site-footer">
+		<div class="wrap">
+			<small class="muted">🇳🇱🇨🇺 Lucian van der Vlugt • 22</small>
+		</div>
 	</footer>
+
+	<script>
+		(function () {
+			const btn = document.getElementById('themeToggle');
+			const body = document.body;
+			const stored = localStorage.getItem('theme');
+			if (stored) body.dataset.theme = stored;
+			btn.addEventListener('click', () => {
+				const next = body.dataset.theme === 'dark' ? 'light' : 'dark';
+				body.dataset.theme = next;
+				localStorage.setItem('theme', next);
+				btn.textContent = next === 'dark' ? '☀️' : '🌙';
+			});
+			// set initial icon
+			btn.textContent = body.dataset.theme === 'dark' ? '☀️' : '🌙';
+		})();
+	</script>
 </body>
 </html>
