@@ -84,3 +84,40 @@ button:hover, #gameStartButton:hover, #gameRestartButton:hover {
 .muted {
 	color: var(--muted);
 }
+
+/* Page-specific demo styles (applies when <body class="demo">) */
+body.demo {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 20px;
+	background-color: var(--bg);
+	color: var(--text);
+}
+
+body.demo header {
+	text-align: center;
+	padding: 22px;
+	border-radius: 10px;
+}
+
+body.demo .content {
+	background-color: var(--surface);
+	padding: 22px;
+	margin-top: 20px;
+	border-radius: 12px;
+	box-shadow: 0 6px 18px rgba(51,65,85,0.04);
+}
+
+body.demo img {
+	display: block;
+	margin: 20px auto;
+	border-radius: 10px;
+}
+
+body.demo footer {
+	text-align: center;
+	margin-top: 20px;
+	color: var(--muted);
+}
+
+body.demo a { color: var(--accent); }
