@@ -6,4 +6,4 @@ This is my course repository for OIM3690.
 - I like to play padel and cards
 - I live in Miami
 ## Links
-
+Link to padel tennis mini project: 
