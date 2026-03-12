@@ -6,13 +6,16 @@
 	<title>Simple Todo App</title>
 	<style>
 		:root {
-			--bg: #0f172a;
-			--card: #111827;
-			--muted: #94a3b8;
-			--text: #e2e8f0;
-			--accent: #22c55e;
-			--danger: #ef4444;
-			--border: #1f2937;
+			--bg1: #0f1029;
+			--bg2: #1a0f3d;
+			--bg3: #072f4b;
+			--card: #ffffff14;
+			--muted: #c7d2fe;
+			--text: #f8fafc;
+			--accent: #34d399;
+			--accent-2: #22d3ee;
+			--danger: #fb7185;
+			--border: #ffffff2b;
 		}
 
 		* {
@@ -23,7 +26,8 @@
 			margin: 0;
 			min-height: 100vh;
 			font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-			background: linear-gradient(180deg, #0b1022, var(--bg));
+			background: radial-gradient(circle at 10% 10%, #8b5cf655, transparent 35%),
+				linear-gradient(130deg, var(--bg1), var(--bg2) 45%, var(--bg3));
 			color: var(--text);
 			display: grid;
 			place-items: center;
@@ -33,16 +37,22 @@
 		.app {
 			width: 100%;
 			max-width: 620px;
-			background: color-mix(in oklab, var(--card) 88%, black);
+			background: linear-gradient(180deg, #ffffff1c, #ffffff10);
+			backdrop-filter: blur(8px);
 			border: 1px solid var(--border);
-			border-radius: 14px;
+			border-radius: 18px;
 			padding: 20px;
-			box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+			box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
 		}
 
 		h1 {
 			margin: 0 0 14px;
-			font-size: 1.5rem;
+			font-size: 1.65rem;
+			letter-spacing: 0.3px;
+			background: linear-gradient(90deg, #f9a8d4, #93c5fd 35%, #67e8f9 70%, #86efac);
+			-webkit-background-clip: text;
+			background-clip: text;
+			color: transparent;
 		}
 
 		form {
@@ -55,11 +65,15 @@
 		input[type="text"] {
 			width: 100%;
 			border: 1px solid var(--border);
-			background: #0b1220;
+			background: #02061766;
 			color: var(--text);
 			border-radius: 10px;
 			padding: 10px 12px;
 			font-size: 1rem;
+		}
+
+		input[type="text"]::placeholder {
+			color: #dbeafea8;
 		}
 
 		button {
@@ -67,17 +81,21 @@
 			border-radius: 10px;
 			padding: 10px 14px;
 			color: var(--text);
-			background: #172033;
+			background: #0f172a80;
 			cursor: pointer;
+			transition: transform 140ms ease, filter 140ms ease, background-color 140ms ease;
 		}
 
 		button:hover {
 			filter: brightness(1.08);
+			transform: translateY(-1px);
 		}
 
 		.primary {
-			background: #153523;
-			border-color: #1b4f32;
+			background: linear-gradient(90deg, #10b981, #06b6d4);
+			border-color: #67e8f9aa;
+			color: #042f2e;
+			font-weight: 700;
 		}
 
 		.controls {
@@ -95,8 +113,10 @@
 		}
 
 		.filters button.active {
-			background: #1f2b45;
-			border-color: #334155;
+			background: linear-gradient(90deg, #818cf8, #22d3ee);
+			border-color: #a5b4fc;
+			color: #111827;
+			font-weight: 700;
 		}
 
 		ul {
@@ -107,6 +127,8 @@
 		}
 
 		li {
+			position: relative;
+			overflow: hidden;
 			display: grid;
 			grid-template-columns: auto 1fr auto;
 			align-items: center;
@@ -115,8 +137,15 @@
 			border-bottom: 1px solid var(--border);
 		}
 
+		li input[type="checkbox"] {
+			accent-color: #14b8a6;
+			width: 18px;
+			height: 18px;
+		}
+
 		.todo-text {
 			overflow-wrap: anywhere;
+			transition: transform 180ms ease;
 		}
 
 		.done .todo-text {
@@ -124,10 +153,55 @@
 			text-decoration: line-through;
 		}
 
+		.celebrate {
+			animation: pulse-done 550ms ease;
+		}
+
+		.celebrate::after {
+			content: "✨ 🎉 ✨";
+			position: absolute;
+			right: 64px;
+			top: 50%;
+			transform: translateY(-50%) scale(0.5);
+			opacity: 0;
+			pointer-events: none;
+			animation: spark-pop 750ms ease-out;
+		}
+
+		@keyframes pulse-done {
+			0% {
+				transform: scale(1);
+				background: transparent;
+			}
+			35% {
+				transform: scale(1.02);
+				background: #34d3992a;
+			}
+			100% {
+				transform: scale(1);
+				background: transparent;
+			}
+		}
+
+		@keyframes spark-pop {
+			0% {
+				opacity: 0;
+				transform: translateY(-50%) scale(0.5) rotate(-10deg);
+			}
+			30% {
+				opacity: 1;
+				transform: translateY(-90%) scale(1.05) rotate(6deg);
+			}
+			100% {
+				opacity: 0;
+				transform: translateY(-150%) scale(1.1) rotate(12deg);
+			}
+		}
+
 		.danger {
-			background: #32181b;
-			border-color: #4b1d22;
-			color: #fecaca;
+			background: #88133766;
+			border-color: #fda4af88;
+			color: #ffe4e6;
 		}
 
 		.empty {
@@ -177,6 +251,7 @@
 
 		let todos = loadTodos();
 		let currentFilter = "all";
+		let celebratedTodoId = null;
 
 		function loadTodos() {
 			try {
@@ -202,9 +277,12 @@
 		}
 
 		function toggleTodo(id) {
-			todos = todos.map((todo) =>
-				todo.id === id ? { ...todo, done: !todo.done } : todo
-			);
+			todos = todos.map((todo) => {
+				if (todo.id !== id) return todo;
+				const nowDone = !todo.done;
+				if (nowDone) celebratedTodoId = id;
+				return { ...todo, done: nowDone };
+			});
 			saveTodos();
 			render();
 		}
@@ -244,6 +322,7 @@
 			for (const todo of visibleTodos) {
 				const li = document.createElement("li");
 				if (todo.done) li.classList.add("done");
+				if (todo.id === celebratedTodoId) li.classList.add("celebrate");
 
 				const checkbox = document.createElement("input");
 				checkbox.type = "checkbox";
@@ -263,6 +342,12 @@
 
 				li.append(checkbox, span, removeButton);
 				list.appendChild(li);
+			}
+
+			if (celebratedTodoId) {
+				setTimeout(() => {
+					celebratedTodoId = null;
+				}, 800);
 			}
 
 			updateFooter();
