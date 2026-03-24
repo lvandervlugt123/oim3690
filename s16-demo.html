@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>S16 Demo</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      font-family: system-ui, sans-serif;
+      background: #f1f5f9;
+      padding: 24px;
+    }
+
+    button {
+      padding: 12px 28px;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 10px;
+      background: #6366f1;
+      color: #fff;
+      cursor: pointer;
+      transition: background 150ms, transform 120ms;
+    }
+
+    button:hover {
+      background: #4f46e5;
+      transform: translateY(-2px);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    #lorem-text {
+      max-width: 600px;
+      background: #fff;
+      border-radius: 12px;
+      padding: 24px 28px;
+      line-height: 1.7;
+      color: #334155;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      display: none;
+      animation: fade-in 350ms ease;
+    }
+
+    #lorem-text.visible {
+      display: block;
+    }
+
+    @keyframes fade-in {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Original Heading</h1>
+
+  <button id="reveal-btn" onclick="toggleText()">Show Lorem Ipsum</button>
+
+  <p id="lorem-text">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+    dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+    mollit anim id est laborum.
+  </p>
+
+  <script>
+    document.querySelector('h1').textContent = 'I changed this!';
+    document.querySelector('h1').style.color = 'red';
+    document.querySelector('body').style.backgroundColor = 'black';
+
+    function toggleText() {
+      const text = document.getElementById("lorem-text");
+      const btn  = document.getElementById("reveal-btn");
+      const isVisible = text.classList.toggle("visible");
+      btn.textContent = isVisible ? "Hide Lorem Ipsum" : "Show Lorem Ipsum";
+    }
+  </script>
+
+</body>
+</html>
