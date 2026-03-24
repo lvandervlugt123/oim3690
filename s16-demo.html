@@ -55,6 +55,16 @@
       display: block;
     }
 
+    #secret-box {
+      background: #fef9c3;
+      border: 2px solid #fde047;
+      border-radius: 10px;
+      padding: 14px 22px;
+      font-size: 1rem;
+      color: #713f12;
+      font-weight: 500;
+    }
+
     @keyframes fade-in {
       from { opacity: 0; transform: translateY(8px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -64,6 +74,9 @@
 <body>
 
   <h1>Original Heading</h1>
+
+  <p id="secret-box">👀 You can see me right now!</p>
+  <button onclick="hideElement()">Hide that element</button>
 
   <button id="reveal-btn" onclick="toggleText()">Show Lorem Ipsum</button>
 
@@ -80,6 +93,10 @@
     document.querySelector('h1').textContent = 'I changed this!';
     document.querySelector('h1').style.color = 'red';
     document.querySelector('body').style.backgroundColor = 'black';
+
+    function hideElement() {
+      document.querySelector('#secret-box').style.display = 'none';
+    }
 
     function toggleText() {
       const text = document.getElementById("lorem-text");
