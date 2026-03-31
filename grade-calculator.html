@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Grade Calculator</title>
+</head>
+<body>
+	<h1>Simple Grade Calculator</h1>
+
+	<label for="score">Enter score:</label>
+	<input type="number" id="score" placeholder="0 to 100" />
+
+	<button id="gradeBtn">Get Grade</button>
+
+	<p id="result">Grade: </p>
+
+	<script>
+		const scoreInput = document.getElementById('score');
+		const gradeBtn = document.getElementById('gradeBtn');
+		const result = document.getElementById('result');
+
+		function getGrade(score) {
+			if (score >= 90) {
+				return 'A';
+			} else if (score >= 80) {
+				return 'B';
+			} else if (score >= 70) {
+				return 'C';
+			} else if (score >= 60) {
+				return 'D';
+			} else {
+				return 'F';
+			}
+		}
+
+		gradeBtn.addEventListener('click', () => {
+			if (scoreInput.value.trim() === '') {
+				result.textContent = 'Please enter a score';
+				result.style.color = 'black';
+				return;
+			}
+
+			const score = parseFloat(scoreInput.value);
+
+			if (Number.isNaN(score) || score < 0 || score > 100) {
+				result.textContent = 'Score must be 0-100';
+				result.style.color = 'black';
+				return;
+			}
+
+			const grade = getGrade(score);
+			result.textContent = `Grade: ${grade}`;
+
+			if (grade === 'A' || grade === 'B') {
+				result.style.color = 'green';
+			} else if (grade === 'C') {
+				result.style.color = 'orange';
+			} else {
+				result.style.color = 'red';
+			}
+		});
+	</script>
+</body>
+</html>
