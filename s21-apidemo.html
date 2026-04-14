@@ -11,6 +11,7 @@
     <button onclick="fetchTown()">New Town</button>
     <p id="author"></p>
     <p id="error"></p>
+<script src="js/config.js"></script>
 
     <script>
         async function fetchTown() {
@@ -52,7 +53,7 @@
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-Token': 'lucianlucian'
+                    'X-Token': OIMToken
                 },
                 body: JSON.stringify({ message: text })
             });
