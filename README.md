@@ -11,3 +11,5 @@ This is my course repository for OIM3690.
 - [about me site](https://github.com/lvandervlugt123/oim3690/blob/4e59e022f8336b22239410e60d6c4c7d78eef31d/about-me.html)
 - [miniproject2](https://lvandervlugt123.github.io/miniproject2/)
 - [miniproject3](https://lvandervlugt123.github.io/miniproject3/)
+- [elective project](https://github.com/lvandervlugt123/elective-project)
+- [final project](https://github.com/lvandervlugt123/poker-final-project)
